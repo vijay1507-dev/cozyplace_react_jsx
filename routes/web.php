@@ -24,6 +24,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
         })->name('staff.dashboard');
         
         Route::get('room-slot-management', [RoomSlotManagementController::class, 'index'])->name('room-slot-management');
+        Route::get('room-slot-management/create', [RoomSlotManagementController::class, 'create'])->name('room-slot-management.create');
+        Route::post('room-slot-management/store', [RoomSlotManagementController::class, 'store'])->name('room-slot-management.store');
+        Route::get('room-slot-management/{id}/view', [RoomSlotManagementController::class, 'view'])->name('room-slot-management.view');
+        Route::get('room-slot-management/{id}', [RoomSlotManagementController::class, 'viewRooms'])->name('room-slot-management.rooms');
+        Route::get('room-slot-management/{id}/rooms/create', [RoomSlotManagementController::class, 'createRoom'])->name('room-slot-management.rooms.create');
+        Route::post('room-slot-management/{id}/rooms/store', [RoomSlotManagementController::class, 'storeRoom'])->name('room-slot-management.rooms.store');
+        Route::get('room-slot-management/{id}/rooms/{roomId}', [RoomSlotManagementController::class, 'viewRoom'])->name('room-slot-management.rooms.view');
+        Route::get('room-slot-management/{id}/rooms/{roomId}/slots', [RoomSlotManagementController::class, 'manageSlots'])->name('room-slot-management.rooms.slots');
+        Route::get('room-slot-management/{id}/rooms/{roomId}/slots/create', [RoomSlotManagementController::class, 'createSlot'])->name('room-slot-management.rooms.slots.create');
+        Route::post('room-slot-management/{id}/rooms/{roomId}/slots/store', [RoomSlotManagementController::class, 'storeSlot'])->name('room-slot-management.rooms.slots.store');
     });
     
     // Admin routes (accessible by superadmin only)
